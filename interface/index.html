@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Service - Blockchain Document Verification</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Space+Grotesk:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Ethers.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ethers/6.10.0/ethers.umd.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="background-orbs">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+        <div class="orb orb-3"></div>
+    </div>
+
+    <nav class="navbar">
+        <div class="logo">
+            <span class="icon">📜</span>
+            <h1>SignService</h1>
+        </div>
+        <button id="connect-wallet" class="btn-primary">
+            <span class="btn-icon">👛</span>
+            <span id="wallet-text">Connect Wallet</span>
+        </button>
+    </nav>
+
+    <main class="container">
+        <!-- Introduction Section -->
+        <section id="introduction" class="glass-card section-active">
+            <div class="hero-content">
+                <h2>Immutable Document Verification</h2>
+                <p>Secure your documents with the power of blockchain. Upload, sign, and store document hashes permanently on the Ethereum network.</p>
+                
+                <div class="features">
+                    <div class="feature-item">
+                        <div class="feature-icon">🔒</div>
+                        <h3>Tamper-Proof</h3>
+                        <p>Hashes stored on-chain</p>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">✍️</div>
+                        <h3>Cryptographic Signatures</h3>
+                        <p>Offline digital signing</p>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">🔍</div>
+                        <h3>Instant Verification</h3>
+                        <p>Verify provenance instantly</p>
+                    </div>
+                </div>
+
+                <button id="get-started" class="btn-secondary">Get Started ➔</button>
+            </div>
+        </section>
+
+        <!-- Document Upload Section -->
+        <section id="upload-section" class="glass-card hidden">
+            <div class="section-header">
+                <h2>Upload Document</h2>
+                <p>Select a file to generate its unique cryptographic hash.</p>
+            </div>
+
+            <div class="upload-area" id="drop-zone">
+                <input type="file" id="file-input" class="hidden-input">
+                <div class="upload-content">
+                    <div class="upload-icon">📁</div>
+                    <h3>Drag & Drop your file here</h3>
+                    <p>or <label for="file-input" class="browse-link">browse</label></p>
+                </div>
+            </div>
+
+            <div id="file-details" class="file-details hidden">
+                <div class="file-info">
+                    <div class="file-icon">📄</div>
+                    <div class="file-meta">
+                        <h4 id="file-name">filename.pdf</h4>
+                        <span id="file-size">2.4 MB</span>
+                    </div>
+                </div>
+                <div class="hash-container">
+                    <span class="hash-label">SHA-256 Hash:</span>
+                    <code id="file-hash" class="hash-value">...</code>
+                </div>
+                <button id="reset-file" class="btn-text">Remove</button>
+            </div>
+        </section>
+
+        <!-- Actions Section -->
+        <section id="actions-section" class="glass-card hidden">
+            <div class="section-header">
+                <h2>Actions</h2>
+                <p>Sign, publish or verify your document.</p>
+            </div>
+
+            <div class="actions-grid">
+                <!-- Sign Action -->
+                <div class="action-card">
+                    <div class="action-header">
+                        <span class="action-icon">✍️</span>
+                        <h3>Offline Sign</h3>
+                    </div>
+                    <p class="action-desc">Sign the document hash using your wallet without publishing to the blockchain.</p>
+                    <button id="btn-sign" class="btn-action" disabled>Sign Document</button>
+                </div>
+
+                <!-- Publish Action -->
+                <div class="action-card highlight-card">
+                    <div class="action-header">
+                        <span class="action-icon">🔗</span>
+                        <h3>Publish</h3>
+                    </div>
+                    <p class="action-desc">Store the document hash permanently on the blockchain via smart contract.</p>
+                    <button id="btn-publish" class="btn-action btn-publish" disabled>Publish to Chain</button>
+                </div>
+
+                <!-- Verify Action -->
+                <div class="action-card">
+                    <div class="action-header">
+                        <span class="action-icon">🔍</span>
+                        <h3>Verify</h3>
+                    </div>
+                    <p class="action-desc">Check if this document's hash has been previously stored on the blockchain.</p>
+                    <button id="btn-verify" class="btn-action" disabled>Verify Document</button>
+                </div>
+                
+                <!-- Retrieve Action (Bonus) -->
+                <div class="action-card">
+                    <div class="action-header">
+                        <span class="action-icon">⬇️</span>
+                        <h3>Retrieve (Bonus)</h3>
+                    </div>
+                    <p class="action-desc">Download the document using its hash from our decentralized storage simulator.</p>
+                    <button id="btn-retrieve" class="btn-action" disabled>Retrieve Document</button>
+                </div>
+            </div>
+
+            <div id="status-container" class="status-container hidden">
+                <!-- Dynamic status messages will appear here -->
+            </div>
+        </section>
+    </main>
+
+    <div id="toast-container"></div>
+
+    <script src="js/config.js"></script>
+    <script src="js/abi.js"></script>
+    <script src="js/blockchain.js" type="module"></script>
+    <script src="js/main.js" type="module"></script>
+</body>
+</html>
