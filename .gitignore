@@ -1,0 +1,29 @@
+# Dependencies
+node_modules/
+
+# Hardhat
+artifacts/
+cache/
+
+# Generated frontend files (optional)
+interface/js/abi.js
+interface/js/config.js
+
+# Uploaded documents
+uploads/
+
+# Logs
+*.log
+npm-debug.log*
+
+# Environment variables
+.env
+
+# macOS
+.DS_Store
+
+# VS Code
+.vscode/
+
+# IntelliJ
+.idea/
